@@ -43,8 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 //帶入requestCode進行呼叫，原因為拍照完畢後返回程式後則呼叫onActivityResult
                 ContentValues value = new ContentValues();
                 value.put(Media.MIME_TYPE, "image/jpeg");
-                Uri uri = getContentResolver().insert(Media.EXTERNAL_CONTENT_URI,
-                        value);
+                Uri uri = getContentResolver().insert(Media.EXTERNAL_CONTENT_URI,value);
                 Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, uri.getPath());
                 startActivityForResult(intent, CAMERA);
@@ -75,13 +74,15 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 //原本讀取圖片Bitmap為 :
-                //   Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
+                Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
                 // 現在要更改成 :
 
+                /*
                 BitmapFactory.Options mOptions = new BitmapFactory.Options();
                 //Size=2為將原始圖片縮小1/2，Size=4為1/4，以此類推
                 mOptions.inSampleSize = 1;
                 Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri),null,mOptions);
+                */
 
                 //判斷照片為橫向或者為直向，並進入ScalePic判斷圖片是否要進行縮放
                 if (bitmap.getWidth() > bitmap.getHeight()) ScalePic(bitmap,
