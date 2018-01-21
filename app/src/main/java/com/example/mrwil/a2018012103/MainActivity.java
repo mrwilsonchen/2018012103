@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//讀取手機解析度
+       //讀取手機解析度
         mPhone = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(mPhone);
 
@@ -74,11 +74,10 @@ public class MainActivity extends AppCompatActivity {
             ContentResolver cr = this.getContentResolver();
 
             try {
-                /*原本讀取圖片Bitmap為 :
-                               Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
+                //原本讀取圖片Bitmap為 :
+                //   Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
+                // 現在要更改成 :
 
-                              現在要更改成 :
-                            */
                 BitmapFactory.Options mOptions = new BitmapFactory.Options();
                 //Size=2為將原始圖片縮小1/2，Size=4為1/4，以此類推
                 mOptions.inSampleSize = 1;
